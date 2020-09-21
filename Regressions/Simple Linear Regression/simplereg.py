@@ -9,7 +9,7 @@ sns.set()
 # Importing the dataset
 dataset = pd.read_csv('Salary_Data.csv')
 X = dataset.iloc[:, :-1].values
-y = dataset.iloc[:, -1].values
+y = dataset.iloc[:, -1]
 
 # A faceted simple linear regression
 g = sns.lmplot(x='YearsExperience',y='Salary',data=dataset,truncate=False,y_jitter=.02)
@@ -26,6 +26,8 @@ regressor.fit(X_train, y_train)
 
 # Predicting the Test set results
 y_pred = regressor.predict(X_test)
+finalpred = pd.DataFrame(data=y_pred,columns=['Prediction'],index=y_test)
+print(f"The final prediction of Salary using Simple Linear Regression are as follows: \n {finalpred}")
 
 # Visualising the Training set results
 plt.scatter(X_train, y_train, color = 'red')
